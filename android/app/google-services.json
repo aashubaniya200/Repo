@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "19167663837",
+    "project_id": "instantmart-nepal",
+    "storage_bucket": "instantmart-nepal.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19167663837:android:f049b8de847b1677bbad34",
+        "android_client_info": {
+          "package_name": "com.instantmart.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFD7AZ_IRz_XLo5xRZvgdvmnYWqPQnQqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

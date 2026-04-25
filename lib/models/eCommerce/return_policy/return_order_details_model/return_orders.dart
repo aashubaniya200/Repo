@@ -1,0 +1,111 @@
+import 'dart:convert';
+
+import 'return_order_product.dart';
+
+class ReturnOrders {
+  int? id;
+  String? orderId;
+  String? reason;
+  double? amount;
+  String? status;
+  String? paymentStatus;
+  String? shopName;
+  String? shopLogo;
+  double? shopRating;
+  dynamic rejectNote;
+  String? returnDate;
+  String? returnAddress;
+  String? customerName;
+  String? customerPhone;
+  String? customerEmail;
+  List<ReturnOrderProduct>? returnOrderProducts;
+
+  ReturnOrders({
+    this.id,
+    this.orderId,
+    this.reason,
+    this.amount,
+    this.status,
+    this.paymentStatus,
+    this.shopName,
+    this.shopLogo,
+    this.shopRating,
+    this.rejectNote,
+    this.returnDate,
+    this.returnAddress,
+    this.customerName,
+    this.customerPhone,
+    this.customerEmail,
+    this.returnOrderProducts,
+  });
+
+  factory ReturnOrders.fromMap(Map<String, dynamic> data) => ReturnOrders(
+        id: _parseInt(data['id']),
+        orderId: data['order_id']?.toString(),
+        reason: data['reason'] as String?,
+        amount: _parseDouble(data['amount']),
+        status: data['status'] as String?,
+        paymentStatus: data['payment_status'] as String?,
+        shopName: data['shop_name'] as String?,
+        shopLogo: data['shop_logo'] as String?,
+        shopRating: _parseDouble(data['shop_rating']),
+        rejectNote: data['reject_note'] as dynamic,
+        returnDate: data['return_date'] as String?,
+        returnAddress: data['return_address'] as String?,
+        customerName: data['customer_name'] as String?,
+        customerPhone: data['customer_phone'] as String?,
+        customerEmail: data['customer_email'] as String?,
+        returnOrderProducts: (data['return_order_products'] as List<dynamic>?)
+            ?.map((e) => ReturnOrderProduct.fromMap(e as Map<String, dynamic>))
+            .toList(),
+      );
+
+  // Helper method to safely parse int from dynamic (handles both int and String)
+  static int? _parseInt(dynamic value) {
+    if (value == null) return null;
+    if (value is int) return value;
+    if (value is String) return int.tryParse(value);
+    return null;
+  }
+
+  // Helper method to safely parse double from dynamic (handles int, double, and String)
+  static double? _parseDouble(dynamic value) {
+    if (value == null) return null;
+    if (value is double) return value;
+    if (value is int) return value.toDouble();
+    if (value is String) return double.tryParse(value);
+    return null;
+  }
+
+  Map<String, dynamic> toMap() => {
+        'id': id,
+        'order_id': orderId,
+        'reason': reason,
+        'amount': amount,
+        'status': status,
+        'payment_status': paymentStatus,
+        'shop_name': shopName,
+        'shop_logo': shopLogo,
+        'shop_rating': shopRating,
+        'reject_note': rejectNote,
+        'return_date': returnDate,
+        'return_address': returnAddress,
+        'customer_name': customerName,
+        'customer_phone': customerPhone,
+        'customer_email': customerEmail,
+        'return_order_products':
+            returnOrderProducts?.map((e) => e.toMap()).toList(),
+      };
+
+  /// `dart:convert`
+  ///
+  /// Parses the string and returns the resulting Json object as [ReturnOrders].
+  factory ReturnOrders.fromJson(String data) {
+    return ReturnOrders.fromMap(json.decode(data) as Map<String, dynamic>);
+  }
+
+  /// `dart:convert`
+  ///
+  /// Converts [ReturnOrders] to a JSON string.
+  String toJson() => json.encode(toMap());
+}

@@ -1,0 +1,9 @@
+framework module TweetNacl {
+  umbrella header "Sources/TweetNacl/TweetNacl.h"
+  export *
+}
+
+framework module CTweetNacl {
+  umbrella header "Sources/CTweetNacl/include/ctweetnacl.h"
+  export *
+}
